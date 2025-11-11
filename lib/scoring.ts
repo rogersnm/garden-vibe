@@ -45,11 +45,12 @@ export function calculateLeaderboard(categories: Category[]): ParticipantScore[]
 /**
  * Parse participant names from a string
  * Handles multiple names separated by commas
+ * Normalizes to lowercase for consistent scoring
  */
 function parseParticipantNames(input: string): string[] {
   return input
     .split(',') // Split by comma only
-    .map((name) => name.trim())
+    .map((name) => name.trim().toLowerCase())
     .filter((name) => name.length > 0);
 }
 
