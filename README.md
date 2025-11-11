@@ -20,6 +20,7 @@ A Next.js application for tracking and calculating scores for gardening competit
 
 - **Dynamic Entry Management**: Add or remove entries for each category
 - **Real-time Leaderboard**: Automatically calculates and updates participant scores
+- **Print to PDF**: Generate professional printable results with overall winners, score breakdowns, and category details
 - **Local Storage Persistence**: All data is automatically saved to browser storage
 - **Responsive Design**: Works on desktop, tablet, and mobile devices
 - **Detailed Breakdown**: View score breakdowns by category for each participant
@@ -55,11 +56,13 @@ npm start
 4. **Remove Entries**: Click the trash icon to remove an entry
 5. **View Leaderboard**: The leaderboard updates automatically as you type
 6. **Detailed Scores**: Click "View Detailed Breakdown" to see category-by-category scores
+7. **Print Results**: Click "Print Results to PDF" to generate a professional printable document with overall winners, participant breakdowns, and category details
 
 ## Technology Stack
 
-- **Framework**: Next.js 14+ with App Router
-- **Language**: TypeScript
+- **Framework**: Next.js 16 with App Router
+- **Language**: TypeScript 5
+- **Runtime**: React 19
 - **Styling**: Tailwind CSS v4
 - **UI Components**: shadcn/ui
 - **Icons**: Lucide React
@@ -70,12 +73,13 @@ npm start
 ```
 garden/
 ├── app/
-│   ├── layout.tsx          # Root layout with metadata
+│   ├── layout.tsx           # Root layout with metadata
 │   ├── page.tsx             # Main page with all categories
 │   └── globals.css          # Global styles
 ├── components/
 │   ├── CategoryTable.tsx    # Individual category table
 │   ├── Leaderboard.tsx      # Real-time leaderboard
+│   ├── PrintableResults.tsx # Printable PDF results format
 │   └── ui/                  # shadcn/ui components
 ├── lib/
 │   ├── types.ts             # TypeScript interfaces
