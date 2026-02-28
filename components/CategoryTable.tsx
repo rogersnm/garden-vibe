@@ -59,7 +59,7 @@ export function CategoryTable({ category, onUpdateCategory }: CategoryTableProps
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-24">Entry ID</TableHead>
+              <TableHead className="w-48">Entry</TableHead>
               <TableHead>1st Place (3pts)</TableHead>
               <TableHead>2nd Place (2pts)</TableHead>
               <TableHead>3rd Place (1pt)</TableHead>
@@ -69,7 +69,12 @@ export function CategoryTable({ category, onUpdateCategory }: CategoryTableProps
           <TableBody>
             {category.entries.map((entry) => (
               <TableRow key={entry.id}>
-                <TableCell className="font-medium">{entry.id}</TableCell>
+                <TableCell className="font-medium">
+                  <div>{entry.id}</div>
+                  {entry.description && (
+                    <div className="text-xs text-gray-500 font-normal mt-0.5">{entry.description}</div>
+                  )}
+                </TableCell>
                 <TableCell>
                   <Input
                     value={entry.firstPlace}

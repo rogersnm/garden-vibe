@@ -121,7 +121,7 @@
   }
 }
 
-/* Print Styles - Optimized for elderly users with large, clear text */
+/* Print Styles - Compact, readable format for AGM */
 @media print {
   /* Hide screen elements */
   .no-print,
@@ -133,17 +133,14 @@
     display: none !important;
   }
 
-  /* Hide all screen content */
   .min-h-screen > .container {
     display: none !important;
   }
 
-  /* Show print-only elements */
   .print-only {
     display: block !important;
   }
 
-  /* Reset page styles */
   * {
     overflow: visible !important;
   }
@@ -153,8 +150,8 @@
     height: auto !important;
     background: white !important;
     color: black !important;
-    font-size: 18px;
-    line-height: 1.6;
+    font-size: 12px;
+    line-height: 1.4;
     margin: 0 !important;
     padding: 0 !important;
     overflow: visible !important;
@@ -167,44 +164,36 @@
   /* Title Page */
   .print-title-page {
     text-align: center;
-    padding: 80px 40px;
+    padding: 60px 30px;
     page-break-after: always;
   }
 
   .print-main-title {
-    font-size: 48px;
+    font-size: 32px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     color: black;
   }
 
   .print-subtitle {
-    font-size: 28px;
+    font-size: 20px;
     color: black;
-    margin-top: 20px;
+    margin-top: 8px;
   }
 
   /* Section Styles */
   .print-section {
-    padding: 30px 40px;
-    margin-bottom: 40px;
+    padding: 15px 25px;
+    margin-bottom: 15px;
   }
 
   .print-section-title {
-    font-size: 36px;
+    font-size: 22px;
     font-weight: bold;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 4px solid black;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid black;
     color: black;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .print-trophy-icon {
-    width: 40px;
-    height: 40px;
   }
 
   /* Page Breaks */
@@ -212,159 +201,166 @@
     page-break-before: always;
   }
 
-  /* Leaderboard Table */
-  .print-leaderboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-
-  .print-th {
-    background-color: black !important;
-    color: white !important;
-    padding: 20px 15px;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: left;
-    border: 2px solid black;
-  }
-
-  .print-td {
-    padding: 18px 15px;
-    font-size: 22px;
-    border: 2px solid black;
-    color: black;
-  }
-
-  .print-podium-row {
-    background-color: #f5f5f5 !important;
-  }
-
-  .print-rank {
-    font-weight: bold;
-    font-size: 24px;
-  }
-
-  .print-participant {
-    font-weight: bold;
-    text-transform: capitalize;
-  }
-
-  .print-score {
-    font-weight: bold;
-    font-size: 26px;
-  }
-
-  .print-text-right {
-    text-align: right;
-  }
-
-  /* Participant Breakdown */
-  .print-participant-breakdown {
-    margin-bottom: 35px;
-    padding: 25px;
-    border: 3px solid black;
+  /* Class Winners */
+  .print-class-winner {
+    margin-bottom: 12px;
     page-break-inside: avoid;
   }
 
-  .print-participant-name {
-    font-size: 28px;
+  .print-class-name {
+    font-size: 16px;
     font-weight: bold;
+    color: black;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 2px;
+  }
+
+  .print-winner-list {
+    padding-left: 10px;
+  }
+
+  .print-winner-row {
+    font-size: 14px;
+    line-height: 1.6;
+    color: black;
+  }
+
+  .print-winner-rank {
+    font-weight: bold;
+  }
+
+  .print-winner-name {
+    text-transform: capitalize;
+  }
+
+  .print-winner-pts {
+    color: #444;
+  }
+
+  .print-no-entries {
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+    margin: 2px 0;
+  }
+
+  /* Overall Winners */
+  .print-overall-winners {
     margin-bottom: 20px;
+  }
+
+  .print-overall-row {
+    font-size: 16px;
+    line-height: 1.8;
+    color: black;
+  }
+
+  .print-overall-rank {
+    font-weight: bold;
+  }
+
+  .print-overall-name {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+
+  .print-overall-pts {
+    color: #333;
+  }
+
+  /* Score Breakdown */
+  .print-breakdown-box {
+    margin-bottom: 12px;
+    padding: 10px;
+    border: 2px solid black;
+    page-break-inside: avoid;
+  }
+
+  .print-breakdown-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 6px;
     text-transform: capitalize;
     color: black;
   }
 
   .print-breakdown-table {
     width: 100%;
-    margin-top: 15px;
   }
 
   .print-breakdown-table tr {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
   }
 
   .print-breakdown-table tr:last-child {
     border-bottom: none;
   }
 
-  .print-category-name {
-    padding: 12px 10px;
-    font-size: 20px;
+  .print-breakdown-cat {
+    padding: 4px 6px;
+    font-size: 12px;
     color: black;
   }
 
-  .print-category-points {
-    padding: 12px 10px;
-    font-size: 22px;
+  .print-breakdown-pts {
+    padding: 4px 6px;
+    font-size: 12px;
     font-weight: bold;
     text-align: right;
     color: black;
   }
 
+  /* Detail Table */
+  .print-th {
+    background-color: black !important;
+    color: white !important;
+    padding: 6px 8px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+    border: 1px solid black;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-td {
+    padding: 5px 8px;
+    font-size: 12px;
+    border: 1px solid #999;
+    color: black;
+  }
+
+  .print-name {
+    text-transform: capitalize;
+  }
+
+  .print-entry-desc {
+    font-size: 10px;
+    color: #555;
+    font-style: italic;
+  }
+
   /* Category Details */
   .print-category {
-    margin-bottom: 40px;
+    margin-bottom: 16px;
     page-break-inside: avoid;
   }
 
   .print-category-title {
-    font-size: 30px;
+    font-size: 16px;
     font-weight: bold;
-    margin-bottom: 25px;
-    padding: 15px 20px;
+    margin-bottom: 6px;
+    padding: 6px 10px;
     background-color: black !important;
     color: white !important;
-    border: 3px solid black;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  .print-entry {
-    margin-bottom: 30px;
-    padding: 20px;
-    border: 2px solid black;
-    page-break-inside: avoid;
-  }
-
-  .print-entry-id {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: black;
-  }
-
-  .print-placements-table {
+  .print-detail-table {
     width: 100%;
     border-collapse: collapse;
-  }
-
-  .print-placements-table tr {
-    border-bottom: 2px solid #ddd;
-  }
-
-  .print-placements-table tr:last-child {
-    border-bottom: none;
-  }
-
-  .print-placement-label {
-    padding: 15px 10px;
-    font-size: 20px;
-    font-weight: bold;
-    color: black;
-    width: 40%;
-  }
-
-  .print-placement-value {
-    padding: 15px 10px;
-    font-size: 22px;
-    color: black;
-    text-transform: capitalize;
-  }
-
-  .print-empty {
-    font-size: 22px;
-    text-align: center;
-    padding: 40px;
-    color: black;
   }
 
   /* Remove shadows, colors, and backgrounds */
@@ -374,13 +370,11 @@
     background-image: none !important;
   }
 
-  /* Ensure links are visible */
   a {
     color: black !important;
     text-decoration: underline;
   }
 
-  /* Prevent infinite pages */
   .print-only {
     max-width: 100%;
     overflow: hidden;

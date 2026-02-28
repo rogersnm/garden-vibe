@@ -4,11 +4,13 @@ import { Category, ParticipantScore, POINTS } from './types';
  * Calculate the leaderboard from all categories
  * Returns an array of participant scores sorted by total score (descending)
  */
-export function calculateLeaderboard(categories: Category[]): ParticipantScore[] {
+export function calculateLeaderboard(categories: Category[], includeExcluded = false): ParticipantScore[] {
   const participantScores = new Map<string, ParticipantScore>();
 
   // Iterate through all categories and entries
-  categories.forEach((category) => {
+  categories
+    .filter((category) => includeExcluded || !category.excludeFromOverall)
+    .forEach((category) => {
     category.entries.forEach((entry) => {
       // Process first place (3 points)
       if (entry.firstPlace.trim()) {
@@ -101,8 +103,8 @@ export function calculateCategoryWinner(category: Category): {
 
   // Get all participants with the highest score (handles ties)
   const winners = Array.from(participantScores.entries())
-    .filter(([_, score]) => score === maxScore)
-    .map(([name, _]) => name);
+    .filter(([, score]) => score === maxScore)
+    .map(([name]) => name);
 
   return {
     winners,
