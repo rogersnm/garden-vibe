@@ -8,7 +8,8 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { calculateLeaderboard } from '@/lib/scoring';
 import { Category, CompetitionData, ENTRY_DESCRIPTIONS } from '@/lib/types';
 import { Button } from '@/components/ui/button';
-import { Printer } from 'lucide-react';
+import { Download, Printer, RotateCcw, Upload } from 'lucide-react';
+import { useRef } from 'react';
 
 function makeEntry(id: string) {
   return { id, description: ENTRY_DESCRIPTIONS[id] || '', firstPlace: '', secondPlace: '', thirdPlace: '' };
@@ -82,8 +83,51 @@ export default function Home() {
     setData({ ...data, categories: updatedCategories });
   };
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleExport = () => {
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `fgc-2026-data-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const imported = JSON.parse(event.target?.result as string) as CompetitionData;
+        if (!imported.categories || !Array.isArray(imported.categories)) {
+          alert('Invalid file: missing categories array.');
+          return;
+        }
+        setData(imported);
+      } catch {
+        alert('Failed to parse JSON file.');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  };
+
+  const handleReset = () => {
+    if (confirm('Reset all data? This cannot be undone.')) {
+      setData(INITIAL_DATA);
+    }
   };
 
   return (
@@ -97,7 +141,7 @@ export default function Home() {
             <p className="text-xl text-gray-600">
               Annual Flower &amp; Produce Show 2026
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Button
                 onClick={handlePrint}
                 size="lg"
@@ -105,6 +149,40 @@ export default function Home() {
               >
                 <Printer className="mr-3 h-6 w-6" />
                 Print Results to PDF
+              </Button>
+              <Button
+                onClick={handleExport}
+                size="lg"
+                variant="outline"
+                className="px-6 py-6 text-lg font-semibold"
+              >
+                <Download className="mr-2 h-5 w-5" />
+                Export
+              </Button>
+              <Button
+                onClick={handleImport}
+                size="lg"
+                variant="outline"
+                className="px-6 py-6 text-lg font-semibold"
+              >
+                <Upload className="mr-2 h-5 w-5" />
+                Import
+              </Button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".json"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+              <Button
+                onClick={handleReset}
+                size="lg"
+                variant="outline"
+                className="px-6 py-6 text-lg font-semibold text-red-600 border-red-300 hover:bg-red-50"
+              >
+                <RotateCcw className="mr-2 h-5 w-5" />
+                Reset
               </Button>
             </div>
           </header>
